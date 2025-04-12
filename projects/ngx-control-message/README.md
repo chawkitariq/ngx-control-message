@@ -5,14 +5,14 @@ An Angular library for binding a message to a synchronous or asynchronous form c
 ## Installation
 
 ```bash
-npm install @chawkitariq/ngx-control-message
+npm install ngx-control-message
 ```
 
 ## Usage
 
 `form.component.ts`
 ```typescript
-import { getControlMessage, setControlMessage, setAsyncControlMessage } from "@chawkitariq/ngx-control-message";
+import { getControlMessage, setControlMessage, setAsyncControlMessage } from "ngx-control-message";
 
 class FormComponent {
    getControlMessage = getControlMessage;
