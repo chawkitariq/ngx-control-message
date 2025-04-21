@@ -24,7 +24,7 @@ class FormComponent {
          setControlMessage(forbiddenNameValidator(/bob/i), 'Name cannot be Bob.'),
       ],
       asyncValidators: [
-         setAsyncControlMessage(nameExistsAsyncValidator, 'Name already exists.')
+         setAsyncControlMessage(nameExistsAsyncValidator(), 'Name already exists.')
       ]
    });
 }
