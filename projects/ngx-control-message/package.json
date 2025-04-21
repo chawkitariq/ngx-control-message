@@ -1,6 +1,17 @@
 {
   "name": "ngx-control-message",
   "version": "1.1.0",
+  "description": "An Angular library for binding a message to a synchronous or asynchronous form control validator.",
+  "license": "ISC",
+  "author": "chawkitariq",
+  "homepage": "https://github.com/chawkitariq/ngx-control-message#readme",
+  "bugs": {
+    "url": "https://github.com/chawkitariq/ngx-control-message/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chawkitariq/ngx-control-message.git"
+  },
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0"
