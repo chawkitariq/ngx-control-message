@@ -24,7 +24,7 @@ class FormComponent {
          setControlMessage(forbiddenNameValidator(/bob/i), 'Name cannot be Bob.'),
       ],
       asyncValidators: [
-         setAsyncControlMessage(nameExistsAsyncValidator, 'Name already exists.')
+         setAsyncControlMessage(nameExistsAsyncValidator(), 'Name already exists.')
       ]
    });
 }
@@ -46,7 +46,7 @@ class FormComponent {
 /**
  * Sets a validation message for a specific validator error
  */
-export declare function setControlMessage(validator: ValidatorFn, message: string): ValidatorFn;
+function setControlMessage(validator: ValidatorFn, message: string): ValidatorFn;
 ```
 
 ### setAsyncControlMessage()
@@ -55,7 +55,7 @@ export declare function setControlMessage(validator: ValidatorFn, message: strin
 /**
  * Sets a validation message for an async validator error
  */
-export declare function setAsyncControlMessage(validator: AsyncValidatorFn, message: string): AsyncValidatorFn;
+function setAsyncControlMessage(validator: AsyncValidatorFn, message: string): AsyncValidatorFn;
 ```
 
 ### getControlMessage()
@@ -64,5 +64,5 @@ export declare function setAsyncControlMessage(validator: AsyncValidatorFn, mess
 /**
  * Gets the validation error message for a control
  */
-export declare function getControlMessage(control: AbstractControl | null): string;
+function getControlMessage(control: AbstractControl | null): string;
 ```
