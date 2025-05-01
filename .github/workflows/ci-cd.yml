@@ -17,9 +17,8 @@ jobs:
       #   run: npm ci && npm test
       - name: Build and publish
         run: |
-          npm install -g @angular/cli
           npm install
-          ng build ngx-control-message
+          npm run build ngx-control-message
       # - uses: JS-DevTools/npm-publish@v3
       #   with:
       #     token: ${{ secrets.NPM_TOKEN }}
