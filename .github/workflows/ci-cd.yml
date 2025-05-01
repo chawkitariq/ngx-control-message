@@ -1,30 +1,72 @@
 on:
-  push:
-    branches: [main]
+  release:
+    types: [published]
+
+env:
+  NODE_VERSION: "22"
+  NPM_REGISTRY: "https://registry.npmjs.org"
+  GITHUB_REGISTRY: "https://npm.pkg.github.com"
 
 jobs:
+  # test:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+
+  #     - name: Install dependencies
+  #       run: npm ci
+
+  #     - name: Run tests
+  #       run: npm test
+
   publish:
+    # needs: test
+    
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: "22"
-      # - name: Run tests
-      #   run: npm ci && npm test
-      - name: Build and publish
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build
         run: |
           npm install
           npm run build ngx-control-message
-      # - uses: JS-DevTools/npm-publish@v3
+
+      # - name: Publish to NPM
+      #   uses: actions/setup-node@v4
       #   with:
-      #     token: ${{ secrets.NPM_TOKEN }}
-      #     package: dist/ngx-control-message
-      - uses: JS-DevTools/npm-publish@v3
+      #     node-version: ${{ env.NODE_VERSION }}
+      #     registry-url: ${{ env.NPM_REGISTRY }}
+      # - run: |
+      #     cd projects/ngx-control-message
+      #     npm publish --provenance --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          registry: "https://npm.pkg.github.com"
-          package: dist/ngx-control-message
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.GITHUB_REGISTRY }}
+      - run: |
+          cd projects/ngx-control-message
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
